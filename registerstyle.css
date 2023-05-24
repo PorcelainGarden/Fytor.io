@@ -1,0 +1,212 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+   padding: 0;
+   font-family: 'Trirong', serif;
+}
+.backround{
+    width: 100%;
+    height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url("images/agriculture.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    display: flex;
+    height: 100%;
+}
+.headerheading h3{
+    justify-self: center;
+    position: fixed;
+    font-size: 50px;
+    margin-left: 37vw;
+}
+.center{
+    justify-content: stretch;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+.center form{
+    margin: 15px 25px 35px;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    max-width: 600px;
+    overflow-y: auto;
+    
+   }
+
+form .row label{
+    color:#fff;
+    font-size: 23px;
+    display: block;
+    padding: 10px;
+   }
+   
+form .row input{
+     width: 500px;
+     padding: 10px;
+     margin: 10px 0px;
+     border: none;
+     border-bottom: 1px solid gray;
+     color: black;
+     background-color: #fff;
+     border-radius: 25px;
+   }
+   form .row input::placeholder{
+    color: rgb(163, 163, 163);
+  }
+  .footer{
+    background-color: rgb(77, 102, 77);
+    width: 100%;
+    position: absolute; bottom: 0;
+}
+.footer ul li{
+    list-style: none;
+    display:inline-block;
+    margin:0 20px;
+}   
+.footer ul li a{
+  text-decoration: none;
+  color: white;
+}
+.dev-logo{
+    width: 40px;
+    height: auto;
+}
+#captchaBackground {
+    height: 200px;
+    width: 200px;
+    margin-left: 29%;
+    background-color:darkslategrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    }
+    
+#captchaHeading {
+    color: white;
+    margin-left: 40%;
+    }
+    
+#captcha {
+    height: 80%;
+    width: 80%;
+    font-size: 30px;
+    letter-spacing: 3px;
+    margin: auto;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+    
+ 
+    
+#submitButton {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: white;
+    border: 0px;
+    font-weight: bold;
+    }
+    
+#refreshButton {
+    background-color:white;
+    border: 0px;
+    font-weight: bold;
+    }
+    
+#textBox {
+    height: 25px;
+    }
+    
+.incorrectCaptcha {
+    color: #FF0000;
+    }
+    
+.correctCaptcha {
+    color: #7FFF00;}
+.confirmbttn button{
+    width:200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 10px 10px;
+    margin-left: 30px;
+    font-weight: bold;
+    border: 2px solid darkolivegreen;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    font-size: 20px;
+    }
+.confirmbttn a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    background-color:darkolivegreen;
+    }
+.confirmbttn span{ /* This span adds the filling to the buttons in the middle*/
+    background:darkolivegreen;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    }
+@media(max-width:1200px),(max-height:1160){
+    div.headerheading h3{
+         font-size:30px;
+         margin-left: 35vw;
+    }
+    div.center form{
+        margin: 10px 10px 10px;
+    }
+      }
+@media(max-width:940px),(max-height:1160){
+    div.headerheading h3{
+        font-size:25px;
+        justify-self: center;
+   }
+    div.center{
+            width:80vw;
+            height:30vh;
+        }
+    div.center form .row input{
+            width:50vw;
+        }
+      }
+@media(max-width:630px),(max-height:1160){
+    div.headerheading h3{
+        font-size: 20px;
+        margin-left: 34vw;
+   }
+    div.center{
+                width:80vw;
+                height:30vh;
+            }
+    div.center form .row input{
+                width:70vw;
+            }
+    #captchaBackground{
+        margin-left: 25%;
+            }
+          }
+    @media(max-width:414px),(max-height:1160){
+        #captchaBackground{
+            margin-left: 15%;
+                }
+        #captchaHeading {
+            margin-left: 30%;
+        }
+          }
+
