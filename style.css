@@ -1,0 +1,423 @@
+*{
+    margin: 0;
+   padding: 0;
+   font-family: 'Trirong', serif;}
+
+.backround{
+    width: 100%;
+    height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url("images/agriculture.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar{
+    background: darkolivegreen;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    
+    padding-left: 10px;
+    width: 100px;
+    height: auto;
+}
+.navbar ul li{
+    list-style: none;
+    display:inline-block;
+    margin: 0 30px;
+    position: relative;
+}
+.navbar ul li a{
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  text-transform: uppercase;
+}
+.navbar ul li button{
+    font-size: 20px;
+    width:100px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.navbar ul li::after{
+    content:'';
+    height:3px;
+    width:0;
+    background:darkgreen;
+    position: absolute;
+    left:0;
+    bottom:-6px;
+    transition: 0.3s;
+}
+.navbar ul li:hover::after{
+    width: 100%;
+
+}
+.checkbtn{  /* The sandwich bar is toggled by a hidden checkbox*/
+    font-size: 30px;
+    color: white;
+    float:right;
+    line-height: 80px;
+    margin-right: 30px;
+    cursor: pointer;
+    display: none;
+}
+#check {
+    display: none;
+}
+/* These @media  elements are what makes the website adjust at certain widths or heights*/
+@media(max-width:858px){
+    .checkbtn{
+        display: block;
+    }
+    .navbar ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: darkolivegreen;
+        top:100px;
+        left:-100%;
+        text-align: center;
+    }
+    .navbar ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    .navbar ul li a{
+        font-size: 20px;
+    }
+    .navbar ul li button{
+        font-size: 20px;
+    }
+    .navbar ul li a:hover, a:active{
+        background: none;
+    }
+    #check:checked ~ul{
+        left:0;
+        z-index: 2;
+
+    }
+    div.center h1{
+        margin-top: 70px;
+        font-size: 25px;
+    }
+    div.center p{
+        font-size: 15px;
+        width: 350px;
+    }
+    div.center button{
+        width: 100px;
+    }
+
+}
+@media(max-width:820px),(max-height:1160){
+    div.popup-box .popup{
+        width: 70vw;
+    }
+    div.content form .row.usernamepopup input{
+        width: 50vw;
+      }
+      div.content form .row.password input{
+          width: 50vw;
+        } 
+        div.content form .popupbttn{
+            margin-left: 80px;
+        }  
+}
+@media(max-width:638px),(max-height:1160){
+    div.popup .content header {
+      width:70vw;
+      padding: 0;
+      padding-top: 10px;
+      padding-right: 50px;
+      justify-content: center;
+    }
+    div.popup .content header p{
+      font-size: 20px;
+    }
+    div.content form .row.usernamepopup input{
+      width: 50vw;
+    }
+    div.content form .row.password input{
+        width: 50vw;
+      }
+    div.content form .row.rememberbox{ 
+        justify-content: center;  
+        width: 95vw;
+        padding:0;
+      }
+      div.content form .row.rememberbox ul p{
+        padding-left: 0;
+        font-size: 15px;
+      }
+
+  }
+
+@media(max-width:350px){
+    div.center{
+        top:62%;
+    }
+    div.center h1{
+        font-size: 20px;
+    }
+    div.center p{
+        font-size: 12px;
+        width: 200px;
+    }
+    div.center button{
+        width: 100px;
+    }
+    div.popup-box .popup{
+        width: 100vw;
+    }   
+    div.popup .content header {
+        width:80vw;
+        justify-content: center;
+        padding-left: 30px;
+      }
+      div.popup .content header p{
+        font-size: 15px;
+      }
+}
+@media(max-width:321px){
+    div.center{
+        top:65%;
+    }
+    div.center p{
+        text-align: center;
+        width: 200px;
+    }
+    div.center button{
+        width: 100px;
+        margin: 5px 5px;
+        padding: 5px 0;
+    }
+}
+@media(max-height:667px){
+    div.center{top:70%;}
+}
+@media(max-height:620px ){
+    div.center{top:67%;}
+    div.center button{
+        width: 100px;
+        margin: 5px 5px;
+    }
+}
+@media(max-width:338px){
+    div.popup .content header {
+        width:90vw;
+        justify-content: center;
+      }
+      div.content form .row.usernamepopup input{
+        width: 50vw;
+      }
+      div.content form .row.password input{
+        width: 50vw;
+      }
+      div.content form .row.rememberbox ul{  
+        width: 100vw;
+        justify-self: center;
+        padding:0;
+        display: flex;
+      }
+      div.content form .row.rememberbox p{
+        padding-top: 5px;
+        justify-self: center;
+      }   
+    
+}
+
+.footer{
+    background-color: rgb(77, 102, 77);
+    width: 100%;
+    position: absolute; bottom: 0;
+}
+.footer ul li{
+    list-style: none;
+    display:inline-block;
+    margin:0 20px;
+}   
+.footer ul li a{
+  text-decoration: none;
+  color: white;
+}
+.dev-logo{
+    width: 40px;
+    height: auto;
+}
+.center{
+    width: 70%;
+    position: fixed;
+    top:50%;
+    transform: translateY(-80%);
+    text-align: center;
+    color: white;
+
+}
+.center h1{
+    font-size: 50px;
+    margin-top: 50px;
+}
+.center p{
+    text-align: left;
+    margin:20px auto;
+    width: 700px;
+    font-weight: 100;
+    line-height: 20px;
+}
+.center button{
+    width:200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    font-weight: bold;
+    border: 2px solid darkgreen;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.center a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    background-color:darkgreen;
+}
+span{ /* This span adds the filling to the buttons in the middle*/
+    background:darkgreen;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.popup-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+   }
+   .popup-box .popup{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+    transform: translate(-50%, -50%) scale(1);
+   }
+   .popup-box, .popup-box .popup{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+   }
+   .popup-box.show, .popup-box.show .popup{
+    opacity: 1;
+    pointer-events: auto;
+   }
+   .popup .content{
+    color: #fff;
+    align-items: center;
+    border-radius: 5px;
+    background:  darkolivegreen;
+    width: 100%;
+    height: 100%;
+    height: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+   }
+   .popup .content header{
+    padding: 15px;
+    padding-left: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   }
+   .content header p{
+    font-size: 23px;
+    font-weight: 500;
+   }
+   .content header button{
+    color: #ffff;
+    margin: 20px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 23px;
+    justify-self: right;
+    position: relative;
+    overflow: hidden;
+   }
+   .content form{
+    margin: 15px 25px 35px;
+    justify-content: center;
+   }
+   form .row label{
+    color:#fff;
+    font-size: 23px;
+    display: block;
+    padding: 10px;
+   }
+   
+   form .row input{
+     width: 500px;
+     padding: 10px;
+     margin: 10px 0px;
+     border: none;
+     border-bottom: 1px solid gray;
+     border-radius: 25px;
+     color: black;
+     background-color: #fff;
+   }
+   form .row input::placeholder{
+    color: rgb(163, 163, 163);
+  }
+   form .popupbttn{
+     width:50%;
+     height: 5vh;
+     text-align: center;
+     margin: 20px 10px;
+     font-weight: bold;
+     border: 2px solid darkgreen;
+     background: darkgreen;
+     color: white;
+     cursor: pointer;
+     position: relative;
+     overflow: hidden;
+     margin-left: 130px;
+     border-radius: 25px;
+   }
+    form .row span{ /* This span adds the filling to the buttons in the middle*/
+    background:darkgreen;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    }
+    form .row.rememberbox ul li{
+    font-size: 15px;
+    text-align: center;
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    margin-left: -220px;
+    }

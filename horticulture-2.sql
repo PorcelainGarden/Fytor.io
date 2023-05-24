@@ -1,0 +1,104 @@
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+
+CREATE TABLE `User`
+(
+  `UID` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`UID`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `Plant`
+(
+  `PlantID` int NOT NULL AUTO_INCREMENT,
+  `UID` int NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`PlantID`),
+  CONSTRAINT `fk_1` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `OtherExpenses`
+(
+  `OEID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `ExpenseName` varchar(50) NOT NULL,
+  `ExpenseCost` float NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`OEID`),
+  CONSTRAINT `fk_7` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_11` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `Irrigations`
+(
+  `IrrigID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `IrrigationDate` datetime NOT NULL,
+  `IrrigationHours` int NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`IrrigID`),
+  CONSTRAINT `fk_5` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_14` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `SalesCompensations`
+(
+  `IncomeID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `IncomeName` varchar(50) NOT NULL,
+  `IncomeType` varchar(50) NOT NULL,
+  `Profit` float NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`IncomeID`),
+  CONSTRAINT `fk_8` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_9` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `Events`
+(
+  `EventID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `EventName` varchar(50) NOT NULL,
+  `EventDate` datetime NOT NULL,
+  `Damage` varchar(50) NOT NULL,
+  `DamagePercent` float NOT NULL,
+  `Comments` text NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`EventID`),
+  CONSTRAINT `fk_6` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_10` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `ArgiculturalTasks`
+(
+  `TaskID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `TaskName` varchar(50) NOT NULL,
+  `DateStarted` datetime NOT NULL,
+  `WorkersNumber` int NOT NULL,
+  `TaskCost` float NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`TaskID`),
+  CONSTRAINT `fk_2` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_12` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+CREATE TABLE `FertiliserPesticicdes`
+(
+  `FPID` int NOT NULL AUTO_INCREMENT,
+  `PlantID` int NOT NULL,
+  `FPType` varchar(50) NOT NULL,
+  `ProductName` varchar(50) NOT NULL,
+  `FPDate` datetime NOT NULL,
+  `FPItems` int NOT NULL,
+  `CostPerItem` float NOT NULL,
+  `TotalCost` float NOT NULL,
+  `UID` int NOT NULL,
+  PRIMARY KEY (`FPID`),
+  CONSTRAINT `fk_3` FOREIGN KEY (`PlantID`) REFERENCES `Plant` (`PlantID`) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT `fk_13` FOREIGN KEY (`UID`) REFERENCES `User` (`UID`) ON UPDATE RESTRICT ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
