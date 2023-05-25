@@ -1,29 +1,33 @@
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import React, { useState } from "react";
-import {Box,useTheme,Typography,Button,IconButton,Grid,Divider,} from "@mui/material";
+import { Box,useTheme,Typography,Button,Grid,Divider } from "@mui/material";
 import { AddCircleOutline } from "@mui/icons-material";
-import DeleteIcon from "@mui/icons-material/DeleteForever";
-import EditIcon from "@mui/icons-material/Edit";
-import PreviewIcon from "@mui/icons-material/Preview";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import { dataTasks, dataChemicals } from "../../data/data";
+import Card from "../../components/Card";
+import PlantPopup from "../../components/Popups/PlantPopup";
+import TaskPopup from "../../components/Popups/TaskPopup";
+import FertilizerPopup from "../../components/Popups/FertilizerPopup";
+import { dataPlants } from "../../data/data";
 
 const Plant = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [open, setOpen] = useState(false);
+  const [openPopup, setOpenPopup] = useState(null);
+  const searchParams = new URLSearchParams(window.location.search);
+  const linkID = parseInt(searchParams.get('id'));
+  const plant = dataPlants.find((plant) => plant.id === linkID);
+  // Access the variables of the plant
+  const { name, description } = plant;
 
-  const addNewClick = () => {
-    setOpen(true);
+
+
+  const addButtonClick = (popupName) => {
+    setOpenPopup(popupName);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenPopup(null);
   };
 
   return (
@@ -41,12 +45,12 @@ const Plant = () => {
           fontSize="25px"
           color={colors.greenAccent[600]}
         >
-          Plant Name
+          {name}
         </Typography>
         <Grid container alignItems="flex-start" justifyContent="flex-start" style={{ height: 100 }}>
           <Grid item xs={12} alignItems="flex-start" justifyContent="flex-start">
             <Typography variant="body1" fontSize="17px">
-              Description
+              {description}
             </Typography>
           </Grid>
         </Grid>
@@ -56,152 +60,63 @@ const Plant = () => {
       <Box mt={2}>
         <Grid container alignItems="center">
           <Grid item xs={8}>
-            <Typography
-              variant="subtitle1"
-              fontSize="25px"
-              color={colors.greenAccent[600]}
-              fontWeight="bold"
-            >
+            <Typography variant="subtitle1" fontSize="25px" color={colors.greenAccent[600]} fontWeight="bold">
               Tasks
             </Typography>
           </Grid>
           <Grid item alignItems="right">
-            <Button
-              variant="contained"
-              alignItems="center"
-              fontSize="17px"
-              startIcon={<AddCircleOutline />}
-              onClick={addNewClick}
-            >
+            <Button variant="contained" alignItems="center" fontSize="17px" startIcon={<AddCircleOutline />}
+              onClick={() => addButtonClick("task")}>
               Add New
             </Button>
           </Grid>
         </Grid>
       </Box>
 
+      <Card data={dataTasks} link="/plant" />
+
+      <Divider />
       <Box mt={2}>
-        <Grid container spacing={1.5} alignItems="center">
-          <Grid item xs={7.5}>
-            <Typography variant="subtitle1" fontSize="17px">
-              Task Name
+        <Grid container alignItems="center">
+          <Grid item xs={8}>
+            <Typography variant="subtitle1" fontSize="25px" color={colors.greenAccent[600]} fontWeight="bold">
+              Pesticides / Fertilizers
             </Typography>
           </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <PreviewIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <EditIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <DeleteIcon color="secondary" />
-            </IconButton>
+          <Grid item alignItems="right">
+            <Button variant="contained" alignItems="center" fontSize="17px" startIcon={<AddCircleOutline />}
+              onClick={() => addButtonClick("chemicals")}>
+              Add New
+            </Button>
           </Grid>
         </Grid>
-
-        <Grid container spacing={1.5} alignItems="center">
-          <Grid item xs={7.5}>
-            <Typography variant="subtitle1" fontSize="17px">
-              Task Name
-            </Typography>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <PreviewIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <EditIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <DeleteIcon color="secondary" />
-            </IconButton>
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={1.5} alignItems="center">
-          <Grid item xs={7.5}>
-            <Typography variant="subtitle1" fontSize="17px">
-              Task Name
-            </Typography>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <PreviewIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <EditIcon color="secondary" />
-            </IconButton>
-          </Grid>
-          <Grid item xs={1.4}>
-            <IconButton>
-              <DeleteIcon color="secondary" />
-            </IconButton>
-          </Grid>
-        </Grid>
-
-        <Divider />
       </Box>
+      <Card data={dataChemicals} link="/chemicals" />
 
-      <AddPopup open={open} handleClose={handleClose} colors={colors}/>
+
+      <Divider />
+      <Box mt={2}>
+        <Grid container alignItems="center">
+          <Grid item xs={8}>
+            <Typography variant="subtitle1" fontSize="25px" color={colors.greenAccent[600]} fontWeight="bold">
+              Irrigation
+            </Typography>
+          </Grid>
+          <Grid item alignItems="right">
+            <Button variant="contained" alignItems="center" fontSize="17px" startIcon={<AddCircleOutline />}
+              onClick={() => addButtonClick("plant")}>
+              Add New
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+      <Card data={dataTasks} link="/plant" />
+      {openPopup === "plant" && <PlantPopup open={true} handleClose={handleClose} colors={colors} />}
+      {openPopup === "task" && <TaskPopup open={true} handleClose={handleClose} colors={colors} />}
+      {openPopup === "chemicals" && <FertilizerPopup open={true} handleClose={handleClose} colors={colors} />}
     </Box>
   );
 };
 
-function AddPopup({ open, handleClose, colors }) {
-  return (
-    <div>
-      <Dialog open={open} onClose={handleClose} PaperProps={{ style: { backgroundColor: colors.primary[500] } }}>
-        <DialogTitle sx={{ fontSize: '30px', fontWeight: 'bold' }}>Add Plant</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To add a plant, please enter the details below.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Plant Name 1"
-            type="text"
-            fullWidth
-            variant="standard"
-            sx={{ fontSize: '18px' }} // Adjust the font size as desired
-            InputLabelProps={{ sx: { fontSize: '18px', color: colors.greenAccent[500] } }} // Adjust the font size of the label
-            InputProps={{ sx: { fontSize: '18px' } }} // Adjust the font size of the input
-            helperText="Enter the name of the plant"
-            FormHelperTextProps={{ sx: { fontSize: '16px' } }} // Adjust the font size of the helper text
-          />
-          <TextField
-            margin="dense"
-            id="description"
-            label="Description"
-            multiline
-            rows={4}
-            fullWidth
-            variant="standard"
-            InputLabelProps={{ sx: { color: colors.greenAccent[500] } }}
-            sx={{ fontSize: '18px' }} // Adjust the font size as desired
-            InputLabelProps={{ sx: { fontSize: '18px', color: colors.greenAccent[500] } }} // Adjust the font size of the label
-            InputProps={{ sx: { fontSize: '18px' } }} // Adjust the font size of the input
-            helperText="Enter a description for the plant"
-            FormHelperTextProps={{ sx: { fontSize: '16px' } }} // Adjust the font size of the helper text       
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} sx={{ color: colors.greenAccent[500], fontWeight: 'bold', fontSize: '14px'}}>Cancel</Button>
-          <Button onClick={handleClose} sx={{ color: colors.greenAccent[500], fontWeight: 'bold', fontSize: '14px'}}>Add</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
+
 export default Plant;
