@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button,} from "@mui/material";
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Select from '@mui/material/Select';
@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { FormControl, InputLabel } from '@mui/material';
 import { dataPlants } from "../../data/data";
 
-function TaskPopup({ open, handleClose, colors, includeDropdown }) {
+function EventPopup({ open, handleClose, colors, includeDropdown }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [workersNumber, setWorkersNumber] = useState("");
   const [cost, setCost] = useState("");
@@ -25,9 +25,8 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
     setCost(event.target.value);
   };
 
-  const handleAddPlant = () => {
-    // Close the dialog
-    handleClose();
+  const handleAdd = () => {
+      handleClose();
   };
 
   return (
@@ -38,11 +37,11 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
         PaperProps={{ style: { backgroundColor: colors.primary[500] } }}
       >
         <DialogTitle sx={{ fontSize: "30px", fontWeight: "bold" }}>
-          Add Task
+          Add Event
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To add a task, please enter the details below.
+            To add an even, please enter the details below.
           </DialogContentText>
           
 
@@ -50,20 +49,20 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
             autoFocus
             margin="dense"
             id="name"
-            label="Task Name"
+            label="Event Name"
             type="text"
             fullWidth
             variant="standard"
             sx={{ fontSize: "18px" }} 
             InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}}
             InputProps={{ sx: { fontSize: "18px" } }} 
-            helperText="Enter the name of the task"
+            helperText="Enter the name of the event"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <MobileDateTimePicker
-              label="Select Date and Time"
+            <MobileDatePicker
+              label="Select Date"
               value={selectedDate}
               onChange={handleDateChange}
               fullWidth
@@ -73,37 +72,33 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
           </LocalizationProvider>
                   
           <TextField
+            autoFocus
             margin="dense"
-            id="workersNumber"
-            label="Workers Number"
-            type="number"
+            id="damage"
+            label="Damage"
+            type="text"
             fullWidth
-            value={workersNumber}
-            onChange={handleWorkersNumberChange}
             variant="standard"
-            sx={{ marginBottom: "16px" }}
-            InputLabelProps={{
-              sx: { fontSize: "18px", color: colors.greenAccent[500] },
-            }}
-            InputProps={{ sx: { fontSize: "18px" } }}
-            helperText="Enter the number of workers"
+            sx={{ fontSize: "18px" }} 
+            InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}}
+            InputProps={{ sx: { fontSize: "18px" } }} 
+            helperText="Enter the damage done"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
-
-          <TextField
+        
+        <TextField
             margin="dense"
-            id="cost"
-            label="Cost"
-            type="number"
+            id="comment"
+            label="Comment"
+            multiline
+            rows={4}
             fullWidth
-            value={cost}
-            onChange={handleCostChange}
             variant="standard"
-            InputLabelProps={{
-              sx: { fontSize: "18px", color: colors.greenAccent[500] },
-            }}
-            InputProps={{ sx: { fontSize: "18px" } }}
-            helperText="Enter the cost in $"
+            InputLabelProps={{sx: { color: colors.greenAccent[500] },}}
+            sx={{ fontSize: "18px" }}
+            InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}} 
+            InputProps={{ sx: { fontSize: "18px" } }} 
+            helperText="Enter a description for the plant"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
 
@@ -121,7 +116,7 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
               </Select>
             </FormControl>
           )}
-          
+
         </DialogContent>
 
         <DialogActions>
@@ -143,4 +138,4 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
   );
 }
 
-export default TaskPopup;
+export default EventPopup;

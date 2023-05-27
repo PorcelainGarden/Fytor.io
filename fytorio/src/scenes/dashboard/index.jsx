@@ -8,8 +8,7 @@ import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
 import { Link } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
-import Opperation2Icon from '@mui/icons-material/Assignment';
-import OpperationIcon from '@mui/icons-material/Construction';
+import TaskIcon from '@mui/icons-material/Construction';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -134,10 +133,10 @@ const Dashboard = () => {
           </Box>
         </IconButton>
 
-        {/* Widget 5: Opperations */}
+        {/* Widget 5: Tasks */}
         <IconButton 
           component={Link}
-          to="/opperations" 
+          to="/tasks" 
           style={{ borderRadius: 0, backgroundColor: colors.primary[400]}}
         >
           <Box
@@ -148,9 +147,9 @@ const Dashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title="Opperations"
+              title="Tasks"
               icon={
-                <OpperationIcon
+                <TaskIcon
                   sx={{ color: colors.greenAccent[600], fontSize: "60px" }}
                 />
               }

@@ -48,11 +48,11 @@ function PlantPopup({ open, handleClose, colors }) {
             fullWidth
             variant="standard"
             InputLabelProps={{sx: { color: colors.greenAccent[500] },}}
-            sx={{ fontSize: "18px" }} // Adjust the font size as desired
-            InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}} // Adjust the font size of the label
-            InputProps={{ sx: { fontSize: "18px" } }} // Adjust the font size of the input
+            sx={{ fontSize: "18px" }} // font size as desired
+            InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}} // font size of the label
+            InputProps={{ sx: { fontSize: "18px" } }} //font size of the input
             helperText="Enter a description for the plant"
-            FormHelperTextProps={{ sx: { fontSize: "16px" } }} // Adjust the font size of the helper text
+            FormHelperTextProps={{ sx: { fontSize: "16px" } }} // font size of the helper text
           />
         </DialogContent>
         <DialogActions>

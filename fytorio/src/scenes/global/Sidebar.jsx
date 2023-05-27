@@ -11,6 +11,7 @@ import EventIcon from '@mui/icons-material/Event';
 import IncomeIcon from '@mui/icons-material/AttachMoney';
 import ExpensesIcon from '@mui/icons-material/MoneyOff';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import TaskIcon from '@mui/icons-material/Construction';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -150,6 +151,13 @@ const Sidebar = () => {
                 title="Expenses"
                 to="/expenses"
                 icon={<ExpensesIcon style={{ fontSize: 40 }} />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <Item
+                title="Tasks"
+                to="/tasks"
+                icon={<TaskIcon style={{ fontSize: 40 }} />}
                 selected={selected}
                 setSelected={setSelected}
               />

@@ -11,12 +11,13 @@ import {
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl, InputLabel } from '@mui/material';
 import FormHelperText from '@mui/material/FormHelperText';
+import Select from '@mui/material/Select';
+import { dataPlants } from "../../data/data";
 
-function FertilizerPopup({ open, handleClose, colors }) {
+function FertilizerPopup({ open, handleClose, colors, includeDropdown }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [workersNumber, setWorkersNumber] = useState("");
   const [cost, setCost] = useState("");
@@ -34,12 +35,6 @@ function FertilizerPopup({ open, handleClose, colors }) {
   };
 
   const handleAddPlant = () => {
-    // Handle the logic for adding the plant with the selected data
-    console.log("Adding plant...");
-    console.log("Selected Date:", selectedDate);
-    console.log("Workers Number:", workersNumber);
-    console.log("Cost:", cost);
-
     // Close the dialog
     handleClose();
   };
@@ -135,6 +130,22 @@ function FertilizerPopup({ open, handleClose, colors }) {
             helperText="Enter the cost in $"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
+
+          {includeDropdown && (
+            <FormControl fullWidth sx={{ marginTop: "16px" }}>
+              <InputLabel sx={{ fontSize: "18px", color: colors.greenAccent[500] }}>
+                Select Plant
+              </InputLabel>
+              <Select sx={{ fontSize: "18px" }} >
+                {[...dataPlants].reverse().map((plant) => (
+                  <MenuItem key={plant.id} value={plant.id}>
+                    {plant.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
         </DialogContent>
 
         <DialogActions>

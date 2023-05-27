@@ -3,7 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
-import Opperations from "./scenes/opperations";
+import Tasks from "./scenes/tasks";
+import Events from "./scenes/events";
+import Income from "./scenes/income";
+import Expenses from "./scenes/expenses";
 import Plants from "./scenes/plants";
 import Plant from "./scenes/plants/plant";
 import Login from "./scenes/login/login";
@@ -29,9 +32,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/plants" element={<Plants />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/tasks" element={<Tasks />} />
               <Route path="/plant?id=" element={<Plant />} />
               <Route path="/plant" element={<Plant />} />
-              <Route path="/opperations" element={<Opperations />} />
+              <Route path="/income" element={<Income />} />
+              <Route path="/expenses" element={<Expenses />} />
               <Route path="/login" element={<Login />} />
               <Route path="/sign-up" element={<Signup />} />
             </Routes>

@@ -5,40 +5,62 @@ import DeleteIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import PreviewIcon from "@mui/icons-material/Preview";
 
-const Card = ({ data, link }) => {
+import { dataPlants } from "../data/data";
+
+const Card = ({ data, usePrefix, link }) => {
   
+  const plantMapping = dataPlants.reduce((map, plant) => {
+    map[plant.id] = plant.name;
+    return map;
+  }, {});
+
   return (
     <Box mt={2}>
-        
-      {data.map((value) => (
-        <Grid key={value.id} container spacing={1.5} alignItems="center">
+      {data.length === 0 ? (
+        <Typography variant="subtitle1" fontSize="17px">
+          Nothing found.
+        </Typography>
+      ) : (
+        <>
+          {[...data].reverse().map((value) => {
+            let namePref = "";
 
-          <Grid item xs={7.5}>
-            <Typography variant="subtitle1" fontSize="17px">
-              {value.name}
-            </Typography>
-          </Grid>
+            if (usePrefix) {
+              const plantName = plantMapping[value.plantId];
+              if (plantName) namePref = " [" + plantName + "]";
+              else namePref = "";
+            }
 
-          <Grid item xs={1.4}>
-            <IconButton component={Link} to={`${link}?id=${value.id}`}>
-              <PreviewIcon color="secondary" />
-            </IconButton>
-          </Grid>
+            return (
+              <Grid container spacing={1.5} alignItems="center" key={value.id}>
+                <Grid item xs={7.5}>
+                  <Typography variant="subtitle1" fontSize="17px">
+                    {value.name + namePref}
+                  </Typography>
+                </Grid>
 
-          <Grid item xs={1.4}>
-            <IconButton>
-              <EditIcon color="secondary" />
-            </IconButton>
-          </Grid>
+                <Grid item xs={1.4}>
+                  <IconButton component={Link} to={`${link}?id=${value.id}`}>
+                    <PreviewIcon color="secondary" />
+                  </IconButton>
+                </Grid>
 
-          <Grid item xs={1.4}>
-            <IconButton>
-              <DeleteIcon color="secondary" />
-            </IconButton>
-          </Grid>
+                <Grid item xs={1.4}>
+                  <IconButton>
+                    <EditIcon color="secondary" />
+                  </IconButton>
+                </Grid>
 
-        </Grid>
-      ))}
+                <Grid item xs={1.4}>
+                  <IconButton>
+                    <DeleteIcon color="secondary" />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            );
+          })}
+        </>
+      )}
       <Divider />
     </Box>
   );

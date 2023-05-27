@@ -1,32 +1,19 @@
 import React, { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button,} from "@mui/material";
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {Dialog,DialogTitle,DialogContent,DialogContentText,TextField,DialogActions,Button,} from "@mui/material";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl, InputLabel } from '@mui/material';
 import { dataPlants } from "../../data/data";
 
-function TaskPopup({ open, handleClose, colors, includeDropdown }) {
-  const [selectedDate, setSelectedDate] = useState(null);
+function IncomePopup({ open, handleClose, colors, includeDropdown }) {
   const [workersNumber, setWorkersNumber] = useState("");
   const [cost, setCost] = useState("");
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleWorkersNumberChange = (event) => {
-    setWorkersNumber(event.target.value);
-  };
 
   const handleCostChange = (event) => {
     setCost(event.target.value);
   };
 
-  const handleAddPlant = () => {
-    // Close the dialog
+  const handleAdd = () => {
     handleClose();
   };
 
@@ -38,11 +25,11 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
         PaperProps={{ style: { backgroundColor: colors.primary[500] } }}
       >
         <DialogTitle sx={{ fontSize: "30px", fontWeight: "bold" }}>
-          Add Task
+          Add Income
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To add a task, please enter the details below.
+            To add an income, please enter the details below.
           </DialogContentText>
           
 
@@ -50,64 +37,33 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
             autoFocus
             margin="dense"
             id="name"
-            label="Task Name"
+            label="Income Name"
             type="text"
             fullWidth
             variant="standard"
             sx={{ fontSize: "18px" }} 
             InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}}
             InputProps={{ sx: { fontSize: "18px" } }} 
-            helperText="Enter the name of the task"
+            helperText="Enter a name for the the income"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <MobileDateTimePicker
-              label="Select Date and Time"
-              value={selectedDate}
-              onChange={handleDateChange}
-              fullWidth
-              inputVariant="standard" 
-              sx={{ marginBottom: "1px", marginTop:"20px" }}
-            />
-          </LocalizationProvider>
-                  
+          
           <TextField
+            autoFocus
             margin="dense"
-            id="workersNumber"
-            label="Workers Number"
+            id="income"
+            label="Income"
             type="number"
             fullWidth
-            value={workersNumber}
-            onChange={handleWorkersNumberChange}
             variant="standard"
-            sx={{ marginBottom: "16px" }}
-            InputLabelProps={{
-              sx: { fontSize: "18px", color: colors.greenAccent[500] },
-            }}
-            InputProps={{ sx: { fontSize: "18px" } }}
-            helperText="Enter the number of workers"
+            sx={{ fontSize: "18px" }} 
+            InputLabelProps={{sx: { fontSize: "18px", color: colors.greenAccent[500] },}}
+            InputProps={{ sx: { fontSize: "18px" } }} 
+            helperText="Enter the income in $"
             FormHelperTextProps={{ sx: { fontSize: "16px" } }}
           />
 
-          <TextField
-            margin="dense"
-            id="cost"
-            label="Cost"
-            type="number"
-            fullWidth
-            value={cost}
-            onChange={handleCostChange}
-            variant="standard"
-            InputLabelProps={{
-              sx: { fontSize: "18px", color: colors.greenAccent[500] },
-            }}
-            InputProps={{ sx: { fontSize: "18px" } }}
-            helperText="Enter the cost in $"
-            FormHelperTextProps={{ sx: { fontSize: "16px" } }}
-          />
-
-          {includeDropdown && (
+            {includeDropdown && (
             <FormControl fullWidth sx={{ marginTop: "16px" }}>
               <InputLabel sx={{ fontSize: "18px", color: colors.greenAccent[500] }}>
                 Select Plant
@@ -121,7 +77,8 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
               </Select>
             </FormControl>
           )}
-          
+
+        
         </DialogContent>
 
         <DialogActions>
@@ -143,4 +100,4 @@ function TaskPopup({ open, handleClose, colors, includeDropdown }) {
   );
 }
 
-export default TaskPopup;
+export default IncomePopup;
